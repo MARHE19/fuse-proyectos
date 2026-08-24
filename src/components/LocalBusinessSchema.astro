@@ -1,0 +1,54 @@
+---
+// src/components/LocalBusinessSchema.astro
+// Datos estructurados (JSON-LD) para SEO local.
+// Reemplaza los placeholders con tus datos reales.
+
+const businessSchema = {
+    "@context": "https://schema.org",
+    "@type": "LocalBusiness",
+    "@id": "https://fuse-proyectos.vercel.app/#negocio",
+    name: "Fuse Proyectos",
+    description:
+        "Empresa de ingeniería y construcción con experiencia en todo el Perú.",
+    url: "https://fuse-proyectos.vercel.app",
+    telephone: "+51TU_TELEFONO_AQUI",
+    email: "TU_EMAIL_AQUI",
+    image: "https://fuse-proyectos.vercel.app/og-image.jpg",
+    address: {
+        "@type": "PostalAddress",
+        streetAddress: "TU_DIRECCION_AQUI",
+        addressLocality: "TU_CIUDAD_AQUI", // ej: Lima
+        addressRegion: "TU_REGION_AQUI", // ej: Lima
+        postalCode: "TU_CODIGO_POSTAL_AQUI",
+        addressCountry: "PE",
+    },
+    // Si no tienes oficina con atención al público, puedes eliminar
+    // geo y openingHoursSpecification, o dejarlos igual sin problema.
+    geo: {
+        "@type": "GeoCoordinates",
+        latitude: "TU_LATITUD_AQUI",
+        longitude: "TU_LONGITUD_AQUI",
+    },
+    openingHoursSpecification: [
+        {
+            "@type": "OpeningHoursSpecification",
+            dayOfWeek: [
+                "Monday",
+                "Tuesday",
+                "Wednesday",
+                "Thursday",
+                "Friday",
+            ],
+            opens: "09:00",
+            closes: "18:00",
+        },
+    ],
+    areaServed: {
+        "@type": "Country",
+        name: "Perú",
+    },
+    priceRange: "$$",
+};
+---
+
+<script type="application/ld+json" set:html={JSON.stringify(businessSchema)} />

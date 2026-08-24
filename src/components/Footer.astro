@@ -1,0 +1,91 @@
+---
+// src/components/Footer.astro
+const year = new Date().getFullYear();
+---
+
+<footer class="bg-fuse-navy text-white">
+    <div
+        class="max-w-6xl mx-auto px-6 py-12 grid grid-cols-1 md:grid-cols-3 gap-10"
+    >
+        <!-- Marca -->
+        <div>
+            <span class="text-lg font-bold">
+                Fuse <span class="text-fuse-orange">Proyectos</span>
+            </span>
+            <p class="text-sm text-slate-300 mt-3 leading-relaxed">
+                Ingeniería y construcción con experiencia en todo el Perú.
+            </p>
+        </div>
+
+        <!-- Navegación -->
+        <nav aria-label="Enlaces del pie de página">
+            <h2
+                class="text-sm font-semibold uppercase tracking-wide text-slate-400 mb-4"
+            >
+                Navegación
+            </h2>
+            <ul class="space-y-2 text-sm">
+                <li>
+                    <a
+                        href="#hero"
+                        class="hover:text-fuse-orange transition-colors"
+                        >Inicio</a>
+                </li>
+                <li>
+                    <a
+                        href="#servicios"
+                        class="hover:text-fuse-orange transition-colors"
+                        >Servicios</a>
+                </li>
+                <li>
+                    <a
+                        href="#portafolio"
+                        class="hover:text-fuse-orange transition-colors"
+                        >Portafolio</a>
+                </li>
+                <li>
+                    <a
+                        href="#contacto"
+                        class="hover:text-fuse-orange transition-colors"
+                        >Contacto</a>
+                </li>
+            </ul>
+        </nav>
+
+        <!-- Contacto -->
+        <div>
+            <h2
+                class="text-sm font-semibold uppercase tracking-wide text-slate-400 mb-4"
+            >
+                Contacto
+            </h2>
+            <ul class="space-y-2 text-sm text-slate-300">
+                <li>
+                    <a
+                        href="tel:+51TU_TELEFONO_AQUI"
+                        class="hover:text-fuse-orange transition-colors"
+                    >
+                        +51 TU_TELEFONO_AQUI
+                    </a>
+                </li>
+                <li>
+                    <a
+                        href="mailto:TU_EMAIL_AQUI"
+                        class="hover:text-fuse-orange transition-colors"
+                    >
+                        TU_EMAIL_AQUI
+                    </a>
+                </li>
+                <li>TU_DIRECCION_AQUI</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="border-t border-white/10">
+        <div
+            class="max-w-6xl mx-auto px-6 py-6 text-center text-xs text-slate-400"
+        >
+            &copy; {year} Fuse Proyectos. Todos los derechos reservados.
+        </div>
+    </div>
+</footer>
