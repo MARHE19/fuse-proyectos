@@ -13,36 +13,48 @@ const slides = [
 ---
 
 <section id="hero" class="relative w-full h-screen overflow-hidden">
+    <!-- H1 oculto visualmente: visible para SEO y lectores de pantalla,
+         no altera el diseño del carrusel -->
+    <h1 class="sr-only">
+        Fuse Proyectos | Ingeniería y Construcción en todo el Perú
+    </h1>
+
     <!-- Slides -->
     <div id="carousel" class="relative w-full h-full">
-        {slides.map((slide, i) => (
-            <div
-                class="carousel-slide absolute inset-0 transition-opacity duration-700 ease-in-out"
-                class:list={[i === 0 ? "opacity-100" : "opacity-0 pointer-events-none"]}
-                data-index={i}
-            >
-                <Image
-                    src={slide.img}
-                    alt={`Fuse Proyectos - obra ${i + 1}`}
-                    class="w-full h-full object-cover"
-                    width={1600}
-                    height={900}
-                />
-                <div class="absolute inset-0 bg-fuse-navy/60"></div>
+        {
+            slides.map((slide, i) => (
+                <div
+                    class="carousel-slide absolute inset-0 transition-opacity duration-700 ease-in-out"
+                    class:list={[
+                        i === 0
+                            ? "opacity-100"
+                            : "opacity-0 pointer-events-none",
+                    ]}
+                    data-index={i}
+                >
+                    <Image
+                        src={slide.img}
+                        alt={`Fuse Proyectos - proyecto de construcción e ingeniería ${i + 1}`}
+                        class="w-full h-full object-cover"
+                        width={1600}
+                        height={900}
+                    />
+                    <div class="absolute inset-0 bg-fuse-navy/60" />
 
-                <div class="absolute inset-0 flex flex-col items-center justify-center text-center px-6">
-                    <p class="slide-text text-fuse-orange text-2xl md:text-4xl font-bold mb-6 opacity-0 translate-y-4 transition-all duration-700">
-                        {slide.text}
-                    </p>
-                    <a
-                        href="#contacto"
-                        class="bg-fuse-orange hover:bg-orange-600 text-white px-8 py-3 rounded-lg font-semibold text-lg transition-colors"
-                    >
-                        Contáctame
-                    </a>
+                    <div class="absolute inset-0 flex flex-col items-center justify-center text-center px-6">
+                        <p class="slide-text text-fuse-orange text-2xl md:text-4xl font-bold mb-6 opacity-0 translate-y-4 transition-all duration-700">
+                            {slide.text}
+                        </p>
+                        <a
+                            href="#contacto"
+                            class="bg-fuse-orange hover:bg-orange-600 text-white px-8 py-3 rounded-lg font-semibold text-lg transition-colors"
+                        >
+                            Contáctame
+                        </a>
+                    </div>
                 </div>
-            </div>
-        ))}
+            ))
+        }
     </div>
 
     <!-- Flecha izquierda -->
@@ -51,8 +63,18 @@ const slides = [
         aria-label="Anterior"
         class="absolute left-4 top-1/2 -translate-y-1/2 text-white rounded-full p-3 bg-white/10 hover:bg-white/25 backdrop-blur-sm transition-colors z-10"
     >
-        <svg xmlns="http://www.w3.org/2000/svg" class="h-7 w-7 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7" />
+        <svg
+            xmlns="http://www.w3.org/2000/svg"
+            class="h-7 w-7 text-white"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+            stroke-width="2.5"
+        >
+            <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M15 19l-7-7 7-7"></path>
         </svg>
     </button>
 
@@ -62,20 +84,32 @@ const slides = [
         aria-label="Siguiente"
         class="absolute right-4 top-1/2 -translate-y-1/2 text-white rounded-full p-3 bg-white/10 hover:bg-white/25 backdrop-blur-sm transition-colors z-10"
     >
-        <svg xmlns="http://www.w3.org/2000/svg" class="h-7 w-7 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" />
+        <svg
+            xmlns="http://www.w3.org/2000/svg"
+            class="h-7 w-7 text-white"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+            stroke-width="2.5"
+        >
+            <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M9 5l7 7-7 7"></path>
         </svg>
     </button>
 
     <!-- Indicadores -->
     <div class="absolute bottom-6 left-1/2 -translate-x-1/2 flex gap-2 z-10">
-        {slides.map((_, i) => (
-            <button
-                class="dot w-2.5 h-2.5 rounded-full bg-white/50 transition-colors"
-                data-index={i}
-                aria-label={`Ir a slide ${i + 1}`}
-            ></button>
-        ))}
+        {
+            slides.map((_, i) => (
+                <button
+                    class="dot w-2.5 h-2.5 rounded-full bg-white/50 transition-colors"
+                    data-index={i}
+                    aria-label={`Ir a slide ${i + 1}`}
+                />
+            ))
+        }
     </div>
 </section>
 

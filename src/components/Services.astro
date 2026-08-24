@@ -17,6 +17,24 @@ const servicios = [
             "Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Excepteur sint occaecat cupidatat non proident, sunt.",
     },
 ];
+
+// Datos estructurados Schema.org (JSON-LD) para cada servicio.
+// Usa las mismas variables de arriba, así que cuando cambies los
+// textos reales, este schema se actualiza automáticamente.
+const servicesSchema = {
+    "@context": "https://schema.org",
+    "@type": "ItemList",
+    itemListElement: servicios.map((servicio, i) => ({
+        "@type": "Service",
+        position: i + 1,
+        name: servicio.titulo,
+        description: servicio.descripcion,
+        provider: {
+            "@type": "LocalBusiness",
+            name: "Fuse Proyectos",
+        },
+    })),
+};
 ---
 
 <section id="servicios" class="py-24 px-6 bg-white">
@@ -28,17 +46,21 @@ const servicios = [
             <div class="w-20 h-1 bg-fuse-orange mx-auto mt-4"></div>
         </div>
 
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {servicios.map((servicio) => (
-                <div class="bg-fuse-gray rounded-xl p-8 hover:shadow-lg transition-shadow border-t-4 border-fuse-orange">
-                    <h3 class="text-xl font-semibold text-fuse-navy mb-4">
-                        {servicio.titulo}
-                    </h3>
-                    <p class="text-slate-600 leading-relaxed">
-                        {servicio.descripcion}
-                    </p>
-                </div>
-            ))}
-        </div>
+        <ul class="grid grid-cols-1 md:grid-cols-3 gap-8 list-none p-0 m-0">
+            {
+                servicios.map((servicio) => (
+                    <li class="bg-fuse-gray rounded-xl p-8 hover:shadow-lg transition-shadow border-t-4 border-fuse-orange">
+                        <h3 class="text-xl font-semibold text-fuse-navy mb-4">
+                            {servicio.titulo}
+                        </h3>
+                        <p class="text-slate-600 leading-relaxed">
+                            {servicio.descripcion}
+                        </p>
+                    </li>
+                ))
+            }
+        </ul>
     </div>
 </section>
+
+<script type="application/ld+json" set:html={JSON.stringify(servicesSchema)} />
