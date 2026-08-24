@@ -1,0 +1,44 @@
+---
+// src/components/Services.astro
+const servicios = [
+    {
+        titulo: "Acondicionamiento de Edificios",
+        descripcion:
+            "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent facilisis, nunc ut fermentum congue, arcu sapien luctus justo.",
+    },
+    {
+        titulo: "Arquitectura e Ingeniería",
+        descripcion:
+            "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat, duis aute irure.",
+    },
+    {
+        titulo: "Construcción de Edificios",
+        descripcion:
+            "Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Excepteur sint occaecat cupidatat non proident, sunt.",
+    },
+];
+---
+
+<section id="servicios" class="py-24 px-6 bg-white">
+    <div class="max-w-6xl mx-auto">
+        <div class="text-center mb-16">
+            <h2 class="text-3xl md:text-4xl font-bold text-fuse-navy">
+                Nuestros Servicios
+            </h2>
+            <div class="w-20 h-1 bg-fuse-orange mx-auto mt-4"></div>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {servicios.map((servicio) => (
+                <div class="bg-fuse-gray rounded-xl p-8 hover:shadow-lg transition-shadow border-t-4 border-fuse-orange">
+                    <h3 class="text-xl font-semibold text-fuse-navy mb-4">
+                        {servicio.titulo}
+                    </h3>
+                    <p class="text-slate-600 leading-relaxed">
+                        {servicio.descripcion}
+                    </p>
+                </div>
+            ))}
+        </div>
+    </div>
+</section>

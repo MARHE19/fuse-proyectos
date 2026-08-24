@@ -1,0 +1,8 @@
+/* src/styles/global.css */
+@import "tailwindcss";
+
+@theme {
+    --color-fuse-navy: #1B2A6B;
+    --color-fuse-orange: #F5821F;
+    --color-fuse-gray: #F3F4F6;
+}

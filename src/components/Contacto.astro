@@ -1,0 +1,147 @@
+---
+// src/components/Contacto.astro
+---
+
+<section id="contacto" class="py-24 px-6 bg-white">
+    <div class="max-w-2xl mx-auto">
+        <div class="text-center mb-12">
+            <h2 class="text-3xl md:text-4xl font-bold text-fuse-navy">
+                Contáctanos
+            </h2>
+            <div class="w-20 h-1 bg-fuse-orange mx-auto mt-4"></div>
+            <p class="text-slate-600 mt-4">
+                Cuéntanos sobre tu proyecto y te responderemos a la brevedad.
+            </p>
+        </div>
+
+        <form
+            id="contact-form"
+            action="https://formspree.io/f/xoeazbdr"
+            method="POST"
+            class="space-y-6"
+        >
+            <div>
+                <label
+                    for="nombre"
+                    class="block text-sm font-medium text-fuse-navy mb-2"
+                >
+                    Nombre completo
+                </label>
+                <input
+                    type="text"
+                    id="nombre"
+                    name="nombre"
+                    required
+                    class="w-full px-4 py-3 rounded-lg border border-slate-300 focus:outline-none focus:ring-2 focus:ring-fuse-orange focus:border-transparent"
+                    placeholder="Tu nombre"
+                />
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div>
+                    <label
+                        for="correo"
+                        class="block text-sm font-medium text-fuse-navy mb-2"
+                    >
+                        Correo electrónico
+                    </label>
+                    <input
+                        type="email"
+                        id="correo"
+                        name="correo"
+                        required
+                        class="w-full px-4 py-3 rounded-lg border border-slate-300 focus:outline-none focus:ring-2 focus:ring-fuse-orange focus:border-transparent"
+                        placeholder="tucorreo@ejemplo.com"
+                    />
+                </div>
+                <div>
+                    <label
+                        for="telefono"
+                        class="block text-sm font-medium text-fuse-navy mb-2"
+                    >
+                        Teléfono
+                    </label>
+                    <input
+                        type="tel"
+                        id="telefono"
+                        name="telefono"
+                        class="w-full px-4 py-3 rounded-lg border border-slate-300 focus:outline-none focus:ring-2 focus:ring-fuse-orange focus:border-transparent"
+                        placeholder="999 999 999"
+                    />
+                </div>
+            </div>
+
+            <div>
+                <label
+                    for="mensaje"
+                    class="block text-sm font-medium text-fuse-navy mb-2"
+                >
+                    Mensaje
+                </label>
+                <textarea
+                    id="mensaje"
+                    name="mensaje"
+                    rows="5"
+                    required
+                    class="w-full px-4 py-3 rounded-lg border border-slate-300 focus:outline-none focus:ring-2 focus:ring-fuse-orange focus:border-transparent resize-none"
+                    placeholder="Cuéntanos sobre tu proyecto..."></textarea>
+            </div>
+
+            <button
+                type="submit"
+                id="submit-btn"
+                class="w-full bg-fuse-orange hover:bg-orange-600 text-white font-semibold py-3 rounded-lg transition-colors disabled:opacity-60"
+            >
+                Enviar mensaje
+            </button>
+
+            <p id="form-status" class="text-center text-sm hidden"></p>
+        </form>
+    </div>
+</section>
+
+<script>
+    const form = document.getElementById("contact-form") as HTMLFormElement;
+    const status = document.getElementById("form-status");
+    const submitBtn = document.getElementById(
+        "submit-btn",
+    ) as HTMLButtonElement;
+
+    form?.addEventListener("submit", async (e) => {
+        e.preventDefault();
+
+        const data = new FormData(form);
+        submitBtn.disabled = true;
+        submitBtn.textContent = "Enviando...";
+
+        try {
+            const response = await fetch(form.action, {
+                method: "POST",
+                body: data,
+                headers: { Accept: "application/json" },
+            });
+
+            if (response.ok) {
+                if (status) {
+                    status.textContent =
+                        "¡Gracias! Tu mensaje fue enviado correctamente.";
+                    status.classList.remove("hidden", "text-red-600");
+                    status.classList.add("text-fuse-navy", "font-medium");
+                }
+                form.reset();
+            } else {
+                throw new Error("Error al enviar");
+            }
+        } catch (error) {
+            if (status) {
+                status.textContent =
+                    "Hubo un error. Intenta de nuevo o escríbenos por WhatsApp.";
+                status.classList.remove("hidden", "text-fuse-navy");
+                status.classList.add("text-red-600", "font-medium");
+            }
+        } finally {
+            submitBtn.disabled = false;
+            submitBtn.textContent = "Enviar mensaje";
+        }
+    });
+</script>
