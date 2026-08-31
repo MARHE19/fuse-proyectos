@@ -1,36 +1,73 @@
 ---
 // src/components/Services.astro
+import { Image } from "astro:assets";
+import personaje from "../assets/images/personaje.webp";
+
 const servicios = [
     {
         titulo: "Instalaciones Eléctricas",
-        descripcion:
-            "Realizamos instalaciones eléctricas para casas, locales, fábricas y otros establecimientos, incluyendo sistemas de baja tensión (BT), tableros principales y de distribución AC, señalización, sistemas de energía ininterrumpida (UPS) y estabilizadores, sistemas de puesta a tierra, grupos electrógenos, proyectos de ahorro de energía, automatización industrial y servicios de electricidad general.",
+        puntos: [
+            "Instalaciones eléctricas para casas, locales, fábricas, etc.",
+            "BT (tablero principal y de distribución AC), señalización.",
+            "Sistema de energía ininterrumpida (UPS, estabilizadores).",
+            "Sistema de puesta a tierra.",
+            "Grupos electrógenos.",
+            "Proyectos de ahorro de energía.",
+            "Automatización industrial.",
+            "Electricidad general.",
+        ],
     },
     {
         titulo: "Implementación de Sistemas de Pozos a Tierra y Pararrayos",
-        descripcion:
-            "Realizamos la construcción de pozos a tierra según la Norma Técnica Peruana NTP 370.052 / 053, así como el mantenimiento de pozos a tierra estándar con valores menores a 5 ohmios y la instalación de mallas a tierra. Emitimos certificados de pozos a tierra firmados por ingeniero eléctrico colegiado. Además, ofrecemos venta, instalación y mantenimiento de pararrayos PDC y pararrayos con dispositivo de cebado.",
+        puntos: [
+            "Construcción de Pozo a Tierra según Norma Técnica Peruana NTP 370.052 / 053.",
+            "Mantenimiento de Pozo a Tierra.",
+            "Pozo a Tierra Estándar: pozos de menos de 5 ohmios, mallas a tierra.",
+            "Certificado de Pozos a Tierra firmado por Ingeniero Eléctrico Colegiado.",
+            "Venta, instalación y mantenimiento de pararrayos PDC y pararrayos con dispositivo de cebado.",
+        ],
     },
     {
         titulo: "Cableado Estructurado con Normas y Estándares",
-        descripcion:
-            "Realizamos canalización de tubería conduit y bandejas eléctricas, instalación de tableros de instrumentación y tableros de distribución, instalación de instrumentos y sensores en campo, así como conexiones en tableros de instrumentación.",
+        puntos: [
+            "Canalización de tubería conduit.",
+            "Canalización de bandejas eléctricas.",
+            "Instalación de tablero de instrumentación.",
+            "Instalación de tablero de distribución.",
+            "Instalación de instrumentos y sensores en campo.",
+            "Conexión en tablero de instrumentación.",
+        ],
     },
     {
         titulo: "Mantenimiento Preventivo y Correctivo",
-        descripcion:
-            "Realizamos mantenimiento de tableros eléctricos, subestaciones y bancos de condensadores, así como mantenimiento residencial, comercial e industrial de instalaciones eléctricas en baja tensión (BT) y media tensión (MT). También ofrecemos mantenimiento preventivo y correctivo de sistemas eléctricos y ejecución y mantenimiento de sistemas de puesta a tierra.",
+        puntos: [
+            "Mantenimiento de tableros eléctricos.",
+            "Mantenimiento de subestaciones.",
+            "Mantenimiento de banco de condensadores.",
+            "Mantenimiento residencial, comercial e industrial de instalaciones eléctricas en BT y MT.",
+            "Mantenimiento preventivo y correctivo S.S.E.E.",
+            "Ejecución y mantenimiento de puesta a tierra.",
+        ],
     },
     {
         titulo: "Pintado en General",
-        descripcion:
-            "Realizamos servicios de mantenimiento y pintura para empresas, casas, edificios, departamentos y oficinas, incluyendo empaste, sellado y pintura de todo tipo de superficies. Ofrecemos pintura interior y exterior, mantenimiento de pintura, pintado de paredes y edificios, pintura en general, servicios de pintores, pintura para oficinas y empresas, pintura de departamentos tanto interior como exterior, y servicios de pintura industrial.",
+        puntos: [
+            "Mantenimiento de pintura para empresas, casas, edificios, departamentos, oficinas.",
+            "Empaste, sellado y pintura de toda superficie.",
+            "Servicio de pintura interior y exterior.",
+            "Servicio de mantenimiento de pintura.",
+            "Servicio de pintura para interiores.",
+            "Servicios de pintura en general.",
+            "Servicio de pintores.",
+            "Servicio de pintado de edificios.",
+            "Servicio de pintado de paredes.",
+        ],
     },
 ];
 
 // Datos estructurados Schema.org (JSON-LD) para cada servicio.
-// Usa las mismas variables de arriba, así que cuando cambies los
-// textos reales, este schema se actualiza automáticamente.
+// La descripción se arma uniendo las viñetas, así que si cambias los
+// puntos de arriba, el schema se actualiza automáticamente.
 const servicesSchema = {
     "@context": "https://schema.org",
     "@type": "ItemList",
@@ -38,7 +75,7 @@ const servicesSchema = {
         "@type": "Service",
         position: i + 1,
         name: servicio.titulo,
-        description: servicio.descripcion,
+        description: servicio.puntos.join(". "),
         provider: {
             "@type": "LocalBusiness",
             name: "Fuse Proyectos",
@@ -63,12 +100,33 @@ const servicesSchema = {
                         <h3 class="text-xl font-semibold text-fuse-navy mb-4">
                             {servicio.titulo}
                         </h3>
-                        <p class="text-slate-600 leading-relaxed">
-                            {servicio.descripcion}
-                        </p>
+                        <ul class="space-y-2">
+                            {servicio.puntos.map((punto) => (
+                                <li class="flex gap-2 text-slate-600 leading-relaxed">
+                                    <span class="text-fuse-orange font-bold shrink-0">
+                                        •
+                                    </span>
+                                    <span>{punto}</span>
+                                </li>
+                            ))}
+                        </ul>
                     </li>
                 ))
             }
+
+            <!-- Personaje Fuse en el espacio vacío de la grilla -->
+            <li
+                class="hidden md:flex items-end justify-center"
+                aria-hidden="true"
+            >
+                <Image
+                    src={personaje}
+                    alt="Personaje Fuse Proyectos"
+                    class="w-full h-full max-h-[420px] object-contain"
+                    width={500}
+                    height={500}
+                />
+            </li>
         </ul>
     </div>
 </section>

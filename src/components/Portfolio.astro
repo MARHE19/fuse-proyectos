@@ -1,25 +1,55 @@
 ---
 // src/components/Portfolio.astro
 import { Image } from "astro:assets";
-import edificio1 from "../assets/images/edificio1.jpg";
-import edificio2 from "../assets/images/edificio2.jpg";
-import edificio3 from "../assets/images/edificio3.jpg";
+import pozoTierra from "../assets/images/pozo_tierra.webp";
+import pozoTierra5 from "../assets/images/pozo_tierra5.webp";
+import pozoTierra4 from "../assets/images/pozo_tierra4.webp";
+import mantenimiento from "../assets/images/mantenimiento.webp";
+import tablero from "../assets/images/tablero.webp";
+import tablero3 from "../assets/images/tablero3.webp";
 
 const trabajos = [
     {
-        img: edificio1,
-        titulo: "Torre Residencial Norte",
-        descripcion: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt.",
+        img: pozoTierra,
+        titulo: "Instalación de Pozos a Tierra",
+        descripcion:
+            "Se realizó la excavación y colocación del electrodo de puesta a tierra en una vivienda, incluyendo la conexión del sistema y la instalación de la caja de registro  para su mantenimiento posterior. El trabajo garantiza la protección eléctrica de la instalación según la normativa vigente.",
+        position: "object-bottom",
     },
     {
-        img: edificio2,
-        titulo: "Complejo Corporativo Central",
-        descripcion: "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea.",
+        img: pozoTierra5,
+        titulo: "Medición de Resistencia de Puesta a Tierra",
+        descripcion:
+            "Se realizó la medición de resistencia del sistema de puesta a tierra utilizando un telurómetro digital, verificando que el valor obtenido cumpla con lo establecido en la Norma Técnica Peruana (NTP 370.052/053), garantizando así la seguridad y eficacia del sistema instalado.",
+        position: "object-bottom",
     },
     {
-        img: edificio3,
-        titulo: "Edificio Multifamiliar Sur",
-        descripcion: "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat.",
+        img: pozoTierra4,
+        titulo: "Pozo a Tierra – Aplicación de Mejorador de Conductividad",
+        descripcion:
+            "Se vertió una mezcla especial (tipo gel/bentonita) alrededor del electrodo de puesta a tierra para mejorar la conductividad del suelo y reducir la resistencia eléctrica, asegurando así un valor óptimo de resistencia a tierra según lo exige la normativa.",
+        position: "object-bottom",
+    },
+    {
+        img: mantenimiento,
+        titulo: "Instalación de Luminaria en Techo",
+        descripcion:
+            "Se realizó la instalación de un equipo de iluminación LED empotrado en techo, incluyendo la fijación del artefacto y las conexiones eléctricas correspondientes, cumpliendo con las medidas de seguridad establecidas.",
+        position: "object-top",
+    },
+    {
+        img: tablero,
+        titulo: "Instalación de Tableros de Distribución",
+        descripcion:
+            "Montaje y cableado de tableros eléctricos con circuitos debidamente identificados, cumpliendo estándares de seguridad y funcionalidad.",
+        position: "object-center",
+    },
+    {
+        img: tablero3,
+        titulo: "Tableros para Edificios Multifamiliares",
+        descripcion:
+            "Instalación de bancos de medidores y tableros individuales para edificios, optimizando el control y distribución de energía por unidad.",
+        position: "object-center",
     },
 ];
 ---
@@ -35,28 +65,59 @@ const trabajos = [
 
         <div class="relative">
             <div id="portfolio-track" class="overflow-hidden">
-                <div id="portfolio-slides" class="flex transition-transform duration-500 ease-in-out">
-                    {trabajos.map((trabajo) => (
-                        <div class="w-full flex-shrink-0 px-2">
-                            <div class="bg-white rounded-xl overflow-hidden shadow-md max-w-2xl mx-auto">
-                                <Image
-                                    src={trabajo.img}
-                                    alt={trabajo.titulo}
-                                    class="w-full h-80 object-cover"
-                                    width={800}
-                                    height={500}
-                                />
-                                <div class="p-6">
-                                    <h3 class="text-xl font-semibold text-fuse-navy mb-2">
-                                        {trabajo.titulo}
-                                    </h3>
-                                    <p class="text-slate-600">
-                                        {trabajo.descripcion}
-                                    </p>
+                <div
+                    id="portfolio-slides"
+                    class="flex transition-transform duration-500 ease-in-out"
+                >
+                    {
+                        trabajos.map((trabajo) =>
+                            trabajo.orientation === "landscape" ? (
+                                <div class="w-full flex-shrink-0 px-2">
+                                    <div class="bg-white rounded-xl overflow-hidden shadow-md max-w-2xl mx-auto md:h-[420px] flex flex-col">
+                                        <div class="w-full h-56 md:h-64 flex-shrink-0 overflow-hidden">
+                                            <Image
+                                                src={trabajo.img}
+                                                alt={trabajo.titulo}
+                                                class={`w-full h-full object-cover ${trabajo.position || "object-center"}`}
+                                                width={800}
+                                                height={450}
+                                            />
+                                        </div>
+                                        <div class="p-6 flex-1 flex flex-col justify-center">
+                                            <h3 class="text-xl font-semibold text-fuse-navy mb-2">
+                                                {trabajo.titulo}
+                                            </h3>
+                                            <p class="text-slate-600">
+                                                {trabajo.descripcion}
+                                            </p>
+                                        </div>
+                                    </div>
                                 </div>
-                            </div>
-                        </div>
-                    ))}
+                            ) : (
+                                <div class="w-full flex-shrink-0 px-2">
+                                    <div class="bg-white rounded-xl overflow-hidden shadow-md max-w-4xl mx-auto md:flex md:h-[420px]">
+                                        <div class="w-full h-64 md:w-1/2 md:h-full overflow-hidden">
+                                            <Image
+                                                src={trabajo.img}
+                                                alt={trabajo.titulo}
+                                                class={`w-full h-full object-cover ${trabajo.position || "object-center"}`}
+                                                width={800}
+                                                height={1000}
+                                            />
+                                        </div>
+                                        <div class="p-6 md:w-1/2 md:h-full flex flex-col justify-center">
+                                            <h3 class="text-xl font-semibold text-fuse-navy mb-2">
+                                                {trabajo.titulo}
+                                            </h3>
+                                            <p class="text-slate-600">
+                                                {trabajo.descripcion}
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            ),
+                        )
+                    }
                 </div>
             </div>
 
@@ -66,8 +127,18 @@ const trabajos = [
                 aria-label="Anterior"
                 class="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-4 bg-fuse-navy hover:bg-fuse-navy/90 text-white rounded-full p-3 shadow-md transition-colors z-10"
             >
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
-                    <path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7" />
+                <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    class="h-5 w-5"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                    stroke-width="2.5"
+                >
+                    <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        d="M15 19l-7-7 7-7"></path>
                 </svg>
             </button>
             <button
@@ -75,8 +146,18 @@ const trabajos = [
                 aria-label="Siguiente"
                 class="absolute right-0 top-1/2 -translate-y-1/2 translate-x-4 bg-fuse-navy hover:bg-fuse-navy/90 text-white rounded-full p-3 shadow-md transition-colors z-10"
             >
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
-                    <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" />
+                <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    class="h-5 w-5"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                    stroke-width="2.5"
+                >
+                    <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        d="M9 5l7 7-7 7"></path>
                 </svg>
             </button>
         </div>
@@ -88,7 +169,6 @@ const trabajos = [
     const prevBtn = document.getElementById("portfolio-prev");
     const nextBtn = document.getElementById("portfolio-next");
     const totalSlides = slidesContainer?.children.length || 0;
-
     let current = 0;
 
     function updateSlide() {
